@@ -44,11 +44,11 @@
 
 **Chunk size:**
 
-150 characters
+250 characters
 
 **Overlap:**
 
-35 characters
+50 characters
 
 **Reasoning:**
 
