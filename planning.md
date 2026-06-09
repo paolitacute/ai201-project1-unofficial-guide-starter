@@ -11,6 +11,8 @@
 
 <!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
 
+<!-- My domain: Ratings of Computer Science Professors in University of South Florida. This knowledge is important for students when choosing a professor whose teaching style is compatible to their learning style and also to prepare better how to approach a professor's character. This knowledge is not found in official channels as the administration generally does not know what it is to take a class and be there day to day as a student with the professors they hire. -->
+
 ---
 
 ## Documents
@@ -20,16 +22,16 @@
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | amanda_holloman.txt | Ratings of Professor Amanda Holloman | /sources/amanda_holloman.txt |
+| 2 | fnu_kaleemunnisa.txt | Ratings of Professor Fnu Kaleemunnisa | /sources/fnu_kaleemunnisa.txt |
+| 3 | hao_zheng.txt | Ratings of Professor Hao Zheng| /sources/hao_zheng.txt |
+| 4 | hye_yi.txt | Ratings of Professor Hye Yi | /sources/hye_yi.txt |
+| 5 | jarred_ligatti.txt | Ratings of Professor Jarred Ligatti | /sources/jarred_ligatti.txt |
+| 6 | mauricio_segundo.txt | Ratings of Professor Mauricio Segundo | /sources/mauricio_segundo.txt |
+| 7 | shaun_canavan.txt | Ratings of Professor Shaun Canavan | /sources/shaun_canavan.txt |
+| 8 | sriram_chellappan.txt | Ratings of Professor Sriram Chellapan | /sources/sriram_chellappan.txt |
+| 9 | taseef_rahman.txt | Ratings of Professor Taseef Rahman | /sources/taseef_rahman.txt |
+| 10 | yu_sun.txt | Ratings of Professor Yu Sun | /sources/yu_sun.txt |
 
 ---
 
@@ -42,10 +44,15 @@
 
 **Chunk size:**
 
+150 characters
+
 **Overlap:**
+
+35 characters
 
 **Reasoning:**
 
+There is a lot of information in the tags and categories of the reviews in very short words or phrases. Also, the semantic meaning in the describing part of the reviews is contained in short sentences. To make sure that the whole semantic meaning is found in one chunk, I opted for a 35 character overlap.
 ---
 
 ## Retrieval Approach
@@ -57,11 +64,11 @@
      support, accuracy on domain-specific text, latency? -->
 
 **Embedding model:**
-
+all-MiniLM-L6-v2
 **Top-k:**
-
+3
 **Production tradeoff reflection:**
-
+I would choose an embedding model that was sensitive to whitespaces since the data has a lot of that.
 ---
 
 ## Evaluation Plan
@@ -73,11 +80,11 @@
 
 | # | Question | Expected answer |
 |---|----------|-----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+| 1 | What is the overall queality of Amanda Holloman? | 3 / 5 |
+| 2 | Is attendance mandatory in CDA4205? | Not Mandatory |
+| 3 | Does Shaun give hard exams? | There is no information about it. |
+| 4 | What is the difficulty of CAI5205? | 5.0 |
+| 5 | How many people have rated Ligatti? | 27 ratings |
 
 ---
 
@@ -87,9 +94,9 @@
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1. The overall information of a professor is separated in reviews, and is hard to understand the global scope of a professor just by extracting words from a few chunks.
 
-2.
+2. The way students speak is different in each review, which can confuse the model.
 
 ---
 
@@ -101,7 +108,7 @@
      You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
 
----
+--- Document Ingestion: Python file I/O operations -> Chunking: Python-> Embedding and Vectore Store: all-MiniLM-L6-v2 and ChromaDB -> Retrieval: ChromaDB -> Generation: Groq and llama-3.3-70b-versatile
 
 ## AI Tool Plan
 
@@ -116,7 +123,8 @@
      with my specified chunk size and overlap" is a plan. -->
 
 **Milestone 3 — Ingestion and chunking:**
-
+I will give Gemini my chunking strategy section and ask it to implement the ingestion and chunking functions with my specified chunk size and overlap
 **Milestone 4 — Embedding and retrieval:**
-
+I will give Gemini my previous project as an example so that it implements the embedding and retrieval functions using ChromaDB for vector storing and embedding.
 **Milestone 5 — Generation and interface:**
+I will give a wireframe to Gemini so that it creates a prompt to give to Claude (alongside the wireframe) so that Claude creates the interface.
